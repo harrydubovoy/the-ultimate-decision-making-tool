@@ -70,7 +70,11 @@ class Layout extends Component {
 
         const newOption = {
             title: '',
-            placeholder: 'Moving to New York'
+            placeholder: 'Moving to New York',
+            answers: {
+                pros: [0],
+                cons: [0]                    
+            }
         }
 
         let options = [...this.state.options, newOption]
