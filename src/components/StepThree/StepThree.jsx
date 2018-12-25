@@ -19,8 +19,10 @@ const StepThree = ({ options }) => {
                 {
                     options.map((option, index) => {
 
-                        const maxRaiting = option.answers.pros.length + option.answers.cons.length  
+                        const maxRaiting = (option.answers.pros.length + option.answers.cons.length)*10                  
                         
+
+                        const a = (Math.abs(option.result)/maxRaiting)*100
 
                         return <StepThreeCardResult
                             key={index}
@@ -30,6 +32,7 @@ const StepThree = ({ options }) => {
                             answers={option.answers}
                             maxRaiting={maxRaiting}
                             title={option.title}
+                            a={a}
                         />
 
                     })
