@@ -116,7 +116,7 @@ class Layout extends Component {
 
     handleRaitingAnswer(selected, indexAnswer, type, indexCard) {
         
-        const options = this.state.options.map((option, index) => {
+        const raitingAnswer = this.state.options.map((option, index) => {
 
             if(indexCard == index) {
                 
@@ -132,7 +132,8 @@ class Layout extends Component {
                     option, 
                     {
                         answers: Object.assign(
-                            {}, option.answers, { [type]: answers})
+                            {}, option.answers, { [type]: answers}
+                        )
                     },
                     {
                         [type]: answers.reduce((a, b) => {
@@ -140,15 +141,24 @@ class Layout extends Component {
                         })
                     },
                     {
-                        result: pros - cons
-                    }                      
+
+                    }                                        
                 )
             }
 
             return Object.assign({}, option)
+        }) 
+
+        const result = raitingAnswer.map(option => { 
+            return option.pros - option.cons
+        })
+
+        const options = raitingAnswer.map((option, index) => {            
+            return Object.assign({}, option, { result: result[index] })
         })
         
-        this.setState({options})       
+        
+        this.setState({options})     
 
     }
 

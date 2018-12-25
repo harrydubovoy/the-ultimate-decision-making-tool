@@ -19,11 +19,16 @@ const StepThree = ({ options }) => {
                 {
                     options.map((option, index) => {
 
+                        const maxRaiting = option.answers.pros.length + option.answers.cons.length  
+                        
+
                         return <StepThreeCardResult
                             key={index}
+                            index={index}
                             pros={option.pros} 
-                            cons={option.cons} 
-                            result={option.result}
+                            cons={option.cons}
+                            answers={option.answers}
+                            maxRaiting={maxRaiting}
                             title={option.title}
                         />
 
