@@ -18,7 +18,10 @@ class Layout extends Component {
                     answers: {
                         pros: [0],
                         cons: [0]                    
-                    }
+                    },
+                    pros: 0,
+                    cons: 0,
+                    result: 0          
                 },
                 {
                     title: '',
@@ -26,15 +29,19 @@ class Layout extends Component {
                     answers: {
                         pros: [0],
                         cons: [0]                    
-                    }
+                    },
+                    pros: 0,
+                    cons: 0,
+                    result: 0
                 }
-            ],
+            ]            
         }
 
         this.handleTitleOption = this.handleTitleOption.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
         this.handleAddAnswer = this.handleAddAnswer.bind(this);
-
+        this.handleRaitingAnswer = this.handleRaitingAnswer.bind(this);
+        
     }      
 
     render() { 
@@ -48,8 +55,9 @@ class Layout extends Component {
                 <StepTwo 
                     options={this.state.options}
                     addAnswer={this.handleAddAnswer}
+                    raitingAnswer={this.handleRaitingAnswer}
                 />
-                <StepThree />                             
+                <StepThree options={this.state.options} />                             
             </div>
         );
     }
@@ -70,11 +78,14 @@ class Layout extends Component {
 
         const newOption = {
             title: '',
-            placeholder: 'Moving to New York',
+            placeholder: 'Entre your option...',
             answers: {
                 pros: [0],
                 cons: [0]                    
-            }
+            },
+            pros: 0,
+            cons: 0,
+            result: 0
         }
 
         let options = [...this.state.options, newOption]
@@ -85,9 +96,9 @@ class Layout extends Component {
 
     handleAddAnswer(current, type) {
 
-        let options = this.state.options.map((option, index) => {           
+        let options = this.state.options.map((option, index) => {       
 
-            if(current == index) {   
+            if(current == index) {
                 return Object.assign(
                     {}, 
                     option, 
@@ -100,8 +111,45 @@ class Layout extends Component {
             return Object.assign({}, option)
         })        
 
-        this.setState({options})
+        this.setState({options})        
+    }
+
+    handleRaitingAnswer(selected, indexAnswer, type, indexCard) {
         
+        const options = this.state.options.map((option, index) => {
+
+            if(indexCard == index) {
+                
+                let answers = option.answers[type].map((answer, index) => {
+                    if(indexAnswer == index) {
+                        return selected
+                    }
+                    return answer
+                })
+
+                return Object.assign(
+                    {}, 
+                    option, 
+                    {
+                        answers: Object.assign(
+                            {}, option.answers, { [type]: answers})
+                    },
+                    {
+                        [type]: answers.reduce((a, b) => {
+                            return a + b;
+                        })
+                    },
+                    {
+                        result: pros - cons
+                    }                      
+                )
+            }
+
+            return Object.assign({}, option)
+        })
+        
+        this.setState({options})       
+
     }
 
 

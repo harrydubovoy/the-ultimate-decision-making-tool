@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "prod": "set \"NODE_ENV=production\" && webpack --mode=production",
-    "watch": "set \"NODE_ENV=development\" && webpack --watch --mode=development"
+    "watch": "set \"NODE_ENV=development\" && webpack-dev-server --mode=development",
+    "dev": "set \"NODE_ENV=development\" && webpack --watch --mode=development"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
@@ -20,6 +21,6 @@
   },
   "dependencies": {
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"    
+    "react-dom": "^16.5.2"
   }
 }

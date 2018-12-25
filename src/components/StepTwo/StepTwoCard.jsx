@@ -3,7 +3,9 @@ import React from 'react';
 
 import StepTwoCardAnswer from './StepTwoCardAnswer.jsx'
 
-const StepTwoCard = ({ title, index, answers, addAnswer }) => {
+const StepTwoCard = ({ title, index, answers, addAnswer, raitingAnswer }) => {
+
+    const indexCard = index
 
     return ( 
         <div className="card">
@@ -15,7 +17,13 @@ const StepTwoCard = ({ title, index, answers, addAnswer }) => {
                             <h6 className="h6">Pros</h6>                            
                             {
                                 answers.pros.map((answer, index) => {
-                                    return <StepTwoCardAnswer key={index} />
+                                    return <StepTwoCardAnswer 
+                                                key={index}  
+                                                raitingAnswer={raitingAnswer}
+                                                indexAnswer={index}
+                                                typeAnswer="pros"
+                                                indexCard={indexCard}
+                                            />
                                 })
                             }
                             <button 
@@ -31,7 +39,13 @@ const StepTwoCard = ({ title, index, answers, addAnswer }) => {
                             <h6 className="h6">Cons</h6>
                             {
                                 answers.cons.map((answer, index) => {
-                                    return <StepTwoCardAnswer key={index} />
+                                    return <StepTwoCardAnswer
+                                                key={index}  
+                                                raitingAnswer={raitingAnswer}
+                                                indexAnswer={index}
+                                                typeAnswer="cons"
+                                                indexCard={indexCard}
+                                            />
                                 })
                             }
                             <button 

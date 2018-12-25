@@ -2,7 +2,8 @@ import React from 'react';
 
 import StepTwoCard from './StepTwoCard.jsx'
 
-const StepTwo = ({ options, addAnswer }) => {
+const StepTwo = ({ options, addAnswer, raitingAnswer }) => { 
+    
     return ( 
             <section className="quiz-section quiz-step">
 
@@ -22,6 +23,7 @@ const StepTwo = ({ options, addAnswer }) => {
                         index={index}
                         answers={option.answers}
                         addAnswer={addAnswer}
+                        raitingAnswer={raitingAnswer}
                     />
                 })
             }
