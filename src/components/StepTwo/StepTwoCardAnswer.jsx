@@ -1,15 +1,20 @@
 import React from 'react';
 
-const StepTwoCardAnswer = ({indexAnswer, typeAnswer, indexCard, raitingAnswer}) => {
-
-    const raiting = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const StepTwoCardAnswer = ({indexAnswer, typeAnswer, indexCard, raitingAnswer, selected}) => {
+    
 
     return ( 
         <div className="form-group">
             <input type="text" className="form-control" placeholder="E.g. Spending more time with the kids" />
             <ul className="quiz-raiting">
-                { raiting.map(item => {
-                    return <li key={item} onClick={() => raitingAnswer(item, indexAnswer, typeAnswer, indexCard) }>{item}</li>
+                { [...new Array(11)].map((n, index) => {
+                    console.log(index);
+                    
+                    return <li 
+                        key={index} 
+                        onClick={() => raitingAnswer(index, indexAnswer, typeAnswer, indexCard) }
+                        className={ selected >= index ? 'selected' : '' }
+                    >{index}</li>
                 }) } 
             </ul>
         </div>

@@ -19,10 +19,14 @@ const StepThree = ({ options }) => {
                 {
                     options.map((option, index) => {
 
-                        const maxRaiting = (option.answers.pros.length + option.answers.cons.length)*10                  
-                        
+                        let pros = option.answers.pros.length,
+                            cons = option.answers.cons.length,                     
+                            maxRaiting = 0,
+                            result = option.result,
+                            chartLength
 
-                        const a = (Math.abs(option.result)/maxRaiting)*100
+                        maxRaiting = pros > cons ? pros*10 : cons*10
+                        chartLength = (Math.abs(result)/maxRaiting)*100
 
                         return <StepThreeCardResult
                             key={index}
@@ -32,7 +36,8 @@ const StepThree = ({ options }) => {
                             answers={option.answers}
                             maxRaiting={maxRaiting}
                             title={option.title}
-                            a={a}
+                            result={option.result}
+                            chartLength={chartLength}
                         />
 
                     })

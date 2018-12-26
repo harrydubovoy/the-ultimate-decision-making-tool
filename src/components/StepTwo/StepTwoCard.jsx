@@ -3,7 +3,7 @@ import React from 'react';
 
 import StepTwoCardAnswer from './StepTwoCardAnswer.jsx'
 
-const StepTwoCard = ({ title, index, answers, addAnswer, raitingAnswer }) => {
+const StepTwoCard = ({ title, index, answers, addAnswer, raitingAnswer, prosSelected, consSelected }) => {
 
     const indexCard = index
 
@@ -23,6 +23,7 @@ const StepTwoCard = ({ title, index, answers, addAnswer, raitingAnswer }) => {
                                                 indexAnswer={index}
                                                 typeAnswer="pros"
                                                 indexCard={indexCard}
+                                                selected={prosSelected}
                                             />
                                 })
                             }
@@ -45,6 +46,7 @@ const StepTwoCard = ({ title, index, answers, addAnswer, raitingAnswer }) => {
                                                 indexAnswer={index}
                                                 typeAnswer="cons"
                                                 indexCard={indexCard}
+                                                selected={consSelected}
                                             />
                                 })
                             }

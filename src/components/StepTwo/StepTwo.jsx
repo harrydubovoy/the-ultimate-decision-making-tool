@@ -24,6 +24,8 @@ const StepTwo = ({ options, addAnswer, raitingAnswer }) => {
                         answers={option.answers}
                         addAnswer={addAnswer}
                         raitingAnswer={raitingAnswer}
+                        prosSelected={option.pros}
+                        consSelected={option.cons}
                     />
                 })
             }

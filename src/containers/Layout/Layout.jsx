@@ -55,7 +55,7 @@ class Layout extends Component {
                 <StepTwo 
                     options={this.state.options}
                     addAnswer={this.handleAddAnswer}
-                    raitingAnswer={this.handleRaitingAnswer}
+                    raitingAnswer={this.handleRaitingAnswer}                    
                 />
                 <StepThree options={this.state.options} />                             
             </div>
