@@ -2,7 +2,7 @@ import React from 'react'
 
 import StepOneInput from './StepOneInput.jsx'
 
-const StepOne = ({ options, titleOption, addOption }) => {    
+const StepOne = ({ options, titleOption, addOption, nextStep, step }) => {    
 
     return ( 
 
@@ -41,7 +41,12 @@ const StepOne = ({ options, titleOption, addOption }) => {
                 </div>
 
                 <div className="quiz-next-step">
-                    <button type="button" className="btn btn-dark">I'm ready for Step 2</button>
+                    <button 
+                        type="button" 
+                        className="btn btn-dark"
+                        onClick={nextStep}
+                        disabled={step > 1}
+                    >I'm ready for Step 2</button>
                 </div>
 
             </section>

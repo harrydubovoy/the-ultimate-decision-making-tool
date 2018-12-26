@@ -283,6 +283,32 @@ h6.h6 {
 
 .card-body {
     padding: 50px 30px 60px;
+    position: relative;
+}
+
+.card-body:hover .quiz-delete {
+    opacity: 1;
+    transition: opacity .25s ease-out;
+}
+
+.quiz-delete {
+    position: absolute;
+    font-size: 20px;
+    line-height: 20px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .25s ease-in;
+}
+
+.quiz-delete svg {    
+    transition: fill .25s ease-in;
+}
+
+.quiz-delete:hover svg {
+    fill: #333333;
+    transition: fill .25s ease-out;
 }
 
 .quiz-raiting {

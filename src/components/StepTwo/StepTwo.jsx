@@ -2,7 +2,7 @@ import React from 'react';
 
 import StepTwoCard from './StepTwoCard.jsx'
 
-const StepTwo = ({ options, addAnswer, raitingAnswer }) => { 
+const StepTwo = ({ options, addAnswer, deleteOption, raitingAnswer, nextStep, step }) => { 
     
     return ( 
             <section className="quiz-section quiz-step">
@@ -21,21 +21,24 @@ const StepTwo = ({ options, addAnswer, raitingAnswer }) => {
                         key={index}
                         title={option.title} 
                         index={index}
+                        id={option.id}
                         answers={option.answers}
                         addAnswer={addAnswer}
+                        deleteOption={deleteOption}
                         raitingAnswer={raitingAnswer}
                         prosSelected={option.pros}
                         consSelected={option.cons}
                     />
                 })
-            }
-
-            
-
-            
+            }            
             
             <div className="quiz-next-step">
-                <button type="button" className="btn btn-dark">I'm ready for Step 3</button>
+                <button 
+                    type="button" 
+                    className="btn btn-dark"
+                    onClick={nextStep}
+                    disabled={step > 2}
+                >I'm ready for Step 3</button>
             </div>
 
         </section>

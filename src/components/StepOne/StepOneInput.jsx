@@ -10,7 +10,7 @@ const StepOneInput = ({ index, placeholder, title, titleOption }) => {
                 type="text" 
                 className="form-control" 
                 id={`option-${index}`}
-                placeholder={ `E.g. ${placeholder}` }
+                placeholder={placeholder}
                 value={title} 
                 onChange={ () => titleOption(event, index) }
             />
