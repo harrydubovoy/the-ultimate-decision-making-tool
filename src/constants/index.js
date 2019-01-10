@@ -1,0 +1,7 @@
+export const NEXT_STEP = 'NEXT_STEP'
+export const TITLE_OPTIONS = 'TITLE_OPTIONS'
+export const ADD_OPTIONS = 'ADD_OPTIONS'
+export const DELETE_OPTIONS = 'DELETE_OPTIONS'
+export const ADD_ANSWER = 'ADD_ANSWER'
+export const RAITING_ANSWER = 'RAITING_ANSWER'
+export const RESTART = 'RESTART'

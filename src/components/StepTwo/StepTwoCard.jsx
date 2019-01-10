@@ -10,7 +10,7 @@ const StepTwoCard = ({ title, index, id, answers, addAnswer, deleteOption, raiti
     return ( 
         <div className="card">
             <div className="card-body quiz-card">
-                <div className="quiz-delete" onClick={ () => {deleteOption(id)} }>
+                <div className="quiz-delete" onClick={() => {deleteOption(id)}}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#ececec" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
                 </div>
                 <h5 className="h5 card-title">{`Option ${index + 1}: ${title}`}</h5>
@@ -24,16 +24,16 @@ const StepTwoCard = ({ title, index, id, answers, addAnswer, deleteOption, raiti
                                                 key={index}  
                                                 raitingAnswer={raitingAnswer}
                                                 indexAnswer={index}
-                                                typeAnswer="pros"
+                                                type="pros"
                                                 indexCard={indexCard}
-                                                selected={prosSelected}
+                                                selected={prosSelected[index]}
                                             />
                                 })
                             }
                             <button 
                                 type="submit" 
                                 className="btn btn-primary btn-rounded btn-outline-primary"
-                                onClick={() => addAnswer(index, 'pros')}
+                                onClick={() => addAnswer('pros', index)}
                             > <span>+</span> Add another</button>
                         </div>                                
                     </div>
@@ -47,16 +47,16 @@ const StepTwoCard = ({ title, index, id, answers, addAnswer, deleteOption, raiti
                                                 key={index}  
                                                 raitingAnswer={raitingAnswer}
                                                 indexAnswer={index}
-                                                typeAnswer="cons"
+                                                type="cons"
                                                 indexCard={indexCard}
-                                                selected={consSelected}
+                                                selected={consSelected[index]}
                                             />
                                 })
                             }
                             <button 
                                 type="submit" 
                                 className="btn btn-primary btn-rounded btn-outline-primary"
-                                onClick={() => addAnswer(index, 'cons')}
+                                onClick={() => addAnswer('cons', index)}
                             > <span>+</span> Add another</button>
                         </div>
                     </div>
