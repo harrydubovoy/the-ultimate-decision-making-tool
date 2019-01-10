@@ -49,9 +49,10 @@ export default (state = initialState, action) => {
 
         case TITLE_OPTIONS:
             {
+                const { title, current } = action.payload
                 const options = state.options.map((option, index) => {
-                    if(action.payload.current == index) {
-                        return {...option, title: action.payload.title}
+                    if(current == index) {
+                        return {...option, title}
                     }
                     return option
                 })
@@ -79,22 +80,24 @@ export default (state = initialState, action) => {
             }
             
         case DELETE_OPTIONS:
+            const id = action.payload.id
             {
                 const options = state.options.filter(option => {
-                    return action.payload.id != option.id;
+                    return id != option.id;
                 })
                 return { ...state, options }
             }
 
         case ADD_ANSWER:
             {
+                const {type, current} = action.payload
                 const options = state.options.map((option, index) => {
-                    if(action.payload.current == index) {
+                    if(current == index) {
                         return {
                             ...option, 
                             answers: {
                                 ...option.answers,
-                                [action.payload.type]: [...option.answers[action.payload.type], 0]
+                                [type]: [...option.answers[type], 0]
                             }}               
                     }               
                     return {...option}
@@ -103,14 +106,22 @@ export default (state = initialState, action) => {
             }
 
         case RAITING_ANSWER:
-            { 
+            {
+                
+                const { 
+                    indexAnswer,
+                    indexCard,
+                    indexSelected,
+                    type 
+                } = action.payload
+                
                 const raitingAnswer = state.options.map((option, index) => {
 
-                    if(action.payload.indexCard == index) { 
+                    if(indexCard == index) { 
                         
-                        const answers = option.answers[action.payload.type].map((answer, index) => {
-                            if(action.payload.indexAnswer == index) {
-                                return action.payload.indexSelected
+                        const answers = option.answers[type].map((answer, index) => {
+                            if(indexAnswer == index) {
+                                return indexSelected
                             }
                             return answer
                         })        
@@ -119,9 +130,9 @@ export default (state = initialState, action) => {
                             ...option,
                             answers: {
                                 ...option.answers,
-                                [action.payload.type]: answers
+                                [type]: answers
                             },
-                            [action.payload.type]: answers.reduce((a, b) => {
+                            [type]: answers.reduce((a, b) => {
                                 return a + b;
                             })
                         }
