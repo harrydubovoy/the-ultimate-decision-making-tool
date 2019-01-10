@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import StepThreeCardResult from './StepThreeCardResult.jsx'
+import Card from './Card.jsx'
 
 
-class StepThreeResults extends Component { 
+class Results extends Component { 
 
     render() { 
 
@@ -24,7 +24,7 @@ class StepThreeResults extends Component {
                         maxRaiting = pros > cons ? pros*10 : cons*10
                         chartLength = (Math.abs(result)/maxRaiting)*100
 
-                        return <StepThreeCardResult
+                        return <Card
                             key={index}
                             index={index}
                             pros={option.pros} 
@@ -49,4 +49,4 @@ const mapStateToProps = state => {
     }
 }
  
-export default connect(mapStateToProps)(StepThreeResults)
+export default connect(mapStateToProps)(Results)

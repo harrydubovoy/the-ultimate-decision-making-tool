@@ -14,7 +14,7 @@ class Restart extends Component {
 
     render() { 
         return ( 
-            <div className="wrapper">        
+            <div className="wrapper">
                 <div className="quiz-finished__text">And, if you're ready to take action in your life, don't wait any longer. </div>
                 <div className="quiz-restart">
                     <button type="submit" className="btn btn-primary" onClick={this.handleRestart}>Restart</button>

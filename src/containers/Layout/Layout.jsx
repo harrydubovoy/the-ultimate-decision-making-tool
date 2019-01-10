@@ -1,141 +1,100 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import uuidv4 from 'uuid/v4'
+import { bindActionCreators } from 'redux'
 import scrollToComponent from 'react-scroll-to-component'
 
-import StepOne from '../../components/StepOne/StepOne.jsx'
-import StepTwo from '../../components/StepTwo/StepTwo.jsx'
-import StepThree from '../../components/StepThree/StepThree.jsx'
+import { nextStep } from '../../actions'
+
+import Options from '../../components/StepOne/Options.jsx'
+import Cards from '../../components/StepTwo/Cards.jsx'
+import Results from '../../components/StepThree/Results.jsx'
+import Restart from '../Restart/Restart.jsx'
+import Description from '../../components/Description/Description.jsx'
+import NextStep from '../../components/Buttons/NextStep.jsx';
+
+
+
 
 class Layout extends Component {
 
     constructor(props) {
         super(props)
 
-        this.state = {
-            options: [
-                {
-                    title: '',
-                    placeholder: 'E.g. Moving to New York',
-                    answers: {
-                        pros: [0],
-                        cons: [0]                    
-                    },
-                    pros: 0,
-                    cons: 0,
-                    result: 0,
-                    id: uuidv4()         
-                },
-                {
-                    title: '',
-                    placeholder: 'E.g. Staying in Beijing',
-                    answers: {
-                        pros: [0],
-                        cons: [0]                    
-                    },
-                    pros: 0,
-                    cons: 0,
-                    result: 0,
-                    id: uuidv4()
-                }
-            ],
-            step: 1           
-        }
-
-        this.stepTwo = React.createRef()
-        this.stepThree = React.createRef()
-
-        this.handlerRestart = this.handlerRestart.bind(this)
+        this.step2 = React.createRef()
+        this.step3 = React.createRef()
         
+        this.handleNextStep = this.handleNextStep.bind(this)
     }      
 
     render() { 
 
-        const step = this.props.step
-        
+        const step = this.props.step        
 
         return ( 
             <div className="wrapper">
-                <StepOne />
-                <div ref={this.stepTwo}>
+                <section className="quiz-section quiz-step">
+                    <Description step={1}/>
+                    <Options />
+                    <NextStep 
+                        handleNextStep={this.handleNextStep} 
+                        nextStep={2} 
+                        currentStep={step} 
+                    />
+                </section>                
+
+                <div ref={this.step2}>
                     { step >= 2 ?                        
-                            <StepTwo />                        
+                        <section className="quiz-section quiz-step">
+                            <Description step={2} />
+                            <Cards />
+                            <NextStep 
+                                handleNextStep={this.handleNextStep} 
+                                nextStep={3}
+                                currentStep={step} 
+                            />
+                        </section>
                         :
                         null                        
                     }
                 </div>
-                <div ref={this.stepThree}>
-                    { step == 3 ?                        
-                            <StepThree 
-                                options={this.state.options}
-                                restart={this.handlerRestart}
-                            />                        
+                <div ref={this.step3}>
+                    { step == 3 ?
+                        <React.Fragment>
+                            <section className="quiz-section quiz-step">
+                                <Description step={3}/>
+                                <Results />
+                            </section>
+                            <Restart />                    
+                        </React.Fragment>                                 
                         :
                         null
                     }
                 </div>                                            
             </div>
-        );
+        )
     }
 
 
-    handleNextStep() {
-
-        const step = ++this.state.step
-
-        // const scrollTo = elem => {
-        //     setTimeout(() => {
-        //         scrollToComponent(elem, {
-        //             offset: -50,
-        //             align: 'top',
-        //             duration: 1500
-        //         });
-        //     }, 0)
-        // }        
+    scrollTo(step) {
+        const scrollTo = elem => {
+            setTimeout(() => {
+                scrollToComponent(elem, {
+                    offset: -50,
+                    align: 'top',
+                    duration: 1500
+                });
+            }, 0)
+        }        
         
-        // if(step == 2) scrollTo(this.stepTwo.current)
-        // else if(step == 3) scrollTo(this.stepThree.current)
-
-        this.setState({step})
-
+        if(step == 2) scrollTo(this.step2.current)
+        else if(step == 3) scrollTo(this.step3.current)
     }
 
-    handlerRestart() {
-
-        const state = {
-            options: [
-                {
-                    title: '',
-                    placeholder: 'E.g. Moving to New York',
-                    answers: {
-                        pros: [0],
-                        cons: [0]                    
-                    },
-                    pros: 0,
-                    cons: 0,
-                    result: 0          
-                },
-                {
-                    title: '',
-                    placeholder: 'E.g. Staying in Beijing',
-                    answers: {
-                        pros: [0],
-                        cons: [0]                    
-                    },
-                    pros: 0,
-                    cons: 0,
-                    result: 0
-                }
-            ],
-            step: 1           
-        }
-
-        this.setState(state)
-
+    handleNextStep(step) {
+        this.props.nextStep()
+        this.scrollTo(step)
     }
-
-
 }
 
 
@@ -145,5 +104,11 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = dispatch => {  
+    return {
+        nextStep: bindActionCreators(nextStep, dispatch)
+    }
+}
+
  
-export default connect(mapStateToProps)(Layout)
+export default connect(mapStateToProps, mapDispatchToProps)(Layout)

@@ -2,17 +2,16 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { nextStep, deleteOption, addAnswer, raitingAnswer } from '../../actions'
+import { deleteOption, addAnswer, raitingAnswer } from '../../actions'
 
-import StepTwoCard from './StepTwoCard.jsx'
+import Card from './Card.jsx'
 
 
-class SrepTwoCards extends Component {
+class Cards extends Component {
 
     constructor(props) {
         super(props)
 
-        this.handleNextStep = this.handleNextStep.bind(this)
         this.handleDeleteOption = this.handleDeleteOption.bind(this)
         this.handleAddAnswer = this.handleAddAnswer.bind(this)
         this.handleRaitingAnswer = this.handleRaitingAnswer.bind(this)
@@ -21,13 +20,12 @@ class SrepTwoCards extends Component {
     render() { 
 
         const options = this.props.options
-        const step = this.props.step
 
         return ( 
             <React.Fragment>
                 {
                     options.map((option, index) => {  
-                        return <StepTwoCard 
+                        return <Card 
                             key={index}
                             title={option.title}
                             index={index}
@@ -40,22 +38,9 @@ class SrepTwoCards extends Component {
                             consSelected={option.answers.cons}
                         />
                     })
-                }            
-
-                <div className="quiz-next-step">
-                    <button 
-                        type="button" 
-                        className="btn btn-dark"
-                        onClick={this.handleNextStep}
-                        disabled={step > 2}
-                    >I'm ready for Step 3</button>
-                </div>
+                }                
             </React.Fragment>
         )
-    }
-
-    handleNextStep() {
-        this.props.nextStep()
     }
 
     handleDeleteOption(id) {
@@ -74,21 +59,19 @@ class SrepTwoCards extends Component {
 
 const mapStateToProps = state => {
     return {
-        options: state.options,
-        step: state.step
+        options: state.options
     }
 }
 
 const mapDispatchToProps = dispatch => {  
     return {
-        nextStep: bindActionCreators(nextStep, dispatch),
         deleteOption: bindActionCreators(deleteOption, dispatch),
         addAnswer: bindActionCreators(addAnswer, dispatch),
         raitingAnswer: bindActionCreators(raitingAnswer, dispatch)        
     }
 }
  
-export default connect(mapStateToProps, mapDispatchToProps)(SrepTwoCards)
+export default connect(mapStateToProps, mapDispatchToProps)(Cards)
 
 
 

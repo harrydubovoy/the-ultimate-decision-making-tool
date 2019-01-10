@@ -62,7 +62,6 @@ export const raitingAnswer = (indexAnswer, indexCard, indexSelected, type) => {
   }  
 }
 
-
 export const restart = () => {
   return {
     type: RESTART 

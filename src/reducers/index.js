@@ -1,5 +1,4 @@
 import uuidv4 from 'uuid/v4'
-import scrollToComponent from 'react-scroll-to-component'
 
 import { 
     NEXT_STEP,

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { titleOptions } from '../../actions'
 
 
-class StepOneInput extends Component {
+class OptionInput extends Component {
 
     constructor(props) {
         super(props)
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
  
-export default connect(mapStateToProps, mapDispatchToProps)(StepOneInput);
+export default connect(mapStateToProps, mapDispatchToProps)(OptionInput);
