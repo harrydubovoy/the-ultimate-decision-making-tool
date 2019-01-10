@@ -6,12 +6,12 @@ import scrollToComponent from 'react-scroll-to-component'
 
 import { nextStep } from '../../actions'
 
-import Options from '../../components/StepOne/Options.jsx'
-import Cards from '../../components/StepTwo/Cards.jsx'
-import Results from '../../components/StepThree/Results.jsx'
+import Options from '../StepOne/Options.jsx'
+import Cards from '../StepTwo/Cards.jsx'
+import Results from '../StepThree/Results.jsx'
 import Restart from '../Restart/Restart.jsx'
-import Description from '../../components/Description/Description.jsx'
-import NextStep from '../../components/Buttons/NextStep.jsx';
+import Description from '../Description/Description.jsx'
+import NextStep from '../Buttons/NextStep.jsx'
 
 
 

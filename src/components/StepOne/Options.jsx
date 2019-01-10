@@ -55,7 +55,6 @@ class Options extends Component {
 
 
 
-
 const mapStateToProps = state => {
     return {
         options: state.options

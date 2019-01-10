@@ -51,7 +51,7 @@ export default (state = initialState, action) => {
             {
                 const options = state.options.map((option, index) => {
                     if(action.payload.current == index) {
-                        return Object.assign({}, option, {title: action.payload.title})
+                        return {...option, title: action.payload.title}
                     }
                     return option
                 })
@@ -71,7 +71,7 @@ export default (state = initialState, action) => {
                     cons: 0,
                     result: 0,
                     id: uuidv4()
-                }            
+                }
                 
                 const options = [...state.options, newOption]
                 
@@ -88,27 +88,22 @@ export default (state = initialState, action) => {
 
         case ADD_ANSWER:
             {
-                const options = state.options.map((option, index) => {       
-
+                const options = state.options.map((option, index) => {
                     if(action.payload.current == index) {
-                        return Object.assign(
-                            {}, 
-                            option, 
-                            {
-                                answers: Object.assign(
-                                    {}, option.answers, { [action.payload.type]: [...option.answers[action.payload.type], 0]})
-                            })                  
-                    }
-               
-                    return Object.assign({}, option)
+                        return {
+                            ...option, 
+                            answers: {
+                                ...option.answers,
+                                [action.payload.type]: [...option.answers[action.payload.type], 0]
+                            }}               
+                    }               
+                    return {...option}
                 })
-
                 return { ...state, options }
             }
 
         case RAITING_ANSWER:
-            {                
-
+            { 
                 const raitingAnswer = state.options.map((option, index) => {
 
                     if(action.payload.indexCard == index) { 
@@ -118,28 +113,21 @@ export default (state = initialState, action) => {
                                 return action.payload.indexSelected
                             }
                             return answer
-                        })
-        
-                        return Object.assign(
-                            {}, 
-                            option,
-                            {
-                                answers: Object.assign(
-                                    {}, option.answers, { [action.payload.type]: answers}
-                                )
+                        })        
+
+                        return {
+                            ...option,
+                            answers: {
+                                ...option.answers,
+                                [action.payload.type]: answers
                             },
-                            {
-                                [action.payload.type]: answers.reduce((a, b) => {
-                                    return a + b;
-                                })
-                            },
-                            {
-        
-                            }                                        
-                        )
+                            [action.payload.type]: answers.reduce((a, b) => {
+                                return a + b;
+                            })
+                        }
                     }
         
-                    return Object.assign({}, option)
+                    return {...option}
                 }) 
         
                 const result = raitingAnswer.map(option => { 
@@ -147,7 +135,7 @@ export default (state = initialState, action) => {
                 })
         
                 const options = raitingAnswer.map((option, index) => {            
-                    return Object.assign({}, option, { result: result[index] })
+                    return { ...option, result: result[index] }
                 })
 
                 return { ...state, options }
