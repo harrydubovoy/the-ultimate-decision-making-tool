@@ -1,6 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-const StepTwoCardAnswer = ({indexAnswer, type, indexCard, raitingAnswer, selected}) => {    
+const CardAnswer = ({
+    indexAnswer, 
+    type, 
+    indexCard, 
+    raitingAnswer, 
+    selected
+}) => {    
 
     return ( 
         <div className="form-group">
@@ -21,4 +27,4 @@ const StepTwoCardAnswer = ({indexAnswer, type, indexCard, raitingAnswer, selecte
      );
 }
  
-export default StepTwoCardAnswer;
+export default CardAnswer

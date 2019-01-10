@@ -1,11 +1,10 @@
-
 import React from 'react';
 
 import CardAnswer from './CardAnswer.jsx'
 import Add from '../Buttons/Add.jsx';
 import Delete from '../Buttons/Delete.jsx';
 
-const StepTwoCard = ({ 
+const Card = ({ 
     title, 
     index, 
     id, 
@@ -30,14 +29,16 @@ const StepTwoCard = ({
                             <h6 className="h6">Pros</h6>                            
                             {
                                 answers.pros.map((n, index) => {
-                                    return <CardAnswer 
-                                                key={index}  
-                                                raitingAnswer={raitingAnswer}
-                                                indexAnswer={index}
-                                                type="pros"
-                                                indexCard={indexCard}
-                                                selected={prosSelected[index]}
-                                            />
+                                    return ( 
+                                        <CardAnswer 
+                                            key={index}  
+                                            raitingAnswer={raitingAnswer}
+                                            indexAnswer={index}
+                                            type="pros"
+                                            indexCard={indexCard}
+                                            selected={prosSelected[index]}
+                                        />
+                                    )
                                 })
                             }
                             <Add handleAdd={() => addAnswer('pros', index)}><span>+</span> Add another</Add>
@@ -67,7 +68,7 @@ const StepTwoCard = ({
                 </div>
             </div>
         </div>
-     );
+     )
 }
  
-export default StepTwoCard;
+export default Card

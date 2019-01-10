@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addOption } from '../../actions'
+
+import { addOption, titleOptions } from '../../actions'
 
 import OptionInput from './OptionInput.jsx'
 import Add from '../Buttons/Add.jsx';
@@ -12,6 +13,7 @@ class Options extends Component {
     constructor(props) {
         super(props)
 
+        this.handleTitleOption = this.handleTitleOption.bind(this)
         this.handleAddOption = this.handleAddOption.bind(this)
     }
 
@@ -29,6 +31,7 @@ class Options extends Component {
                                     key={index} 
                                     index={index} 
                                     placeholder={option.placeholder}
+                                    titleOption={this.handleTitleOption}
                                 />
                             )
                         })
@@ -39,6 +42,11 @@ class Options extends Component {
         )        
     }
 
+
+
+    handleTitleOption(event, current) {
+        this.props.titleOptions(event.target.value, current)
+    }
 
     handleAddOption() {
         this.props.addOption()
@@ -57,6 +65,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {  
     return {
         addOption: bindActionCreators(addOption, dispatch),
+        titleOptions: bindActionCreators(titleOptions, dispatch)
     }
 }
  

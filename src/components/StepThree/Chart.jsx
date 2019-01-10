@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ResultChart = ({result, chartLength}) => {
+const Chart = ({result, chartLength}) => {
     return (
         <div className="card-result__chart">               
             <svg className="circle-chart" viewBox="0 0 35.63 35.63" width="96px" height="96px" xmlns="http://www.w3.org/2000/svg">
@@ -16,4 +16,4 @@ const ResultChart = ({result, chartLength}) => {
     )
 }
  
-export default ResultChart
+export default Chart
