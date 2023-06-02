@@ -1,0 +1,29 @@
+name: "Build Run"
+
+on:
+  workflow_dispatch:
+    inputs:
+      build-mode:
+        type: choice
+        default: development
+        required: true
+        description: 'Webpack build mode'
+        options:
+          - development
+          - production
+
+jobs:
+  test-app:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test console log
+        uses: actions/github-script@v6
+        id: package-version
+        with:
+          result-encoding: string
+          script: |
+            console.log('1111111');
+            return 111111;
+
